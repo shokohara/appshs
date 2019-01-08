@@ -1,0 +1,8 @@
+{-# LANGUAGE OverloadedStrings #-}
+module ExampleSlack where
+
+import qualified GitHub as GH
+import CliOpt
+
+main a = do
+  putStrLn (org a)
