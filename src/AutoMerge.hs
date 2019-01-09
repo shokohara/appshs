@@ -8,13 +8,18 @@ import qualified GitHub.Endpoints.PullRequests as GH
 import GitHub.Data.Name
 import qualified GitHub.Data.Request as R
 import qualified Data.Text as T
+import GitHub.Auth
 import System.Environment
 import Data.String (fromString)
+import qualified Data.ByteString as B
 
 main :: Program -> IO ()
 main a = do
-  ePrs <- GH.executeRequest' $ GH.pullRequestsForR (GH.mkOwnerName (T.pack(org a))) (GH.mkRepoName $ T.pack (repo a)) GH.optionsNoBase R.FetchAll
-  putStrLn $ show ePrs
+  mtoken <- lookupEnv "GITHUB_TOKEN"
+  mtoken2 <- fmap fromString mtoken :: IO B.ByteString
+--  ePrs <- GH.executeRequest' $ GH.pullRequestsFor' (fmap (OAuth . fromString) mtoken) (GH.mkOwnerName (T.pack(org a))) (GH.mkRepoName $ T.pack (repo a)) GH.optionsNoBase R.FetchAll
+--  putStrLn $ show ePrs
+  return ()
 
 withAuth :: (GH.Auth -> IO ()) -> IO ()
 withAuth action = do
