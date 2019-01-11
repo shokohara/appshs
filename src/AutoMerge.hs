@@ -15,8 +15,8 @@ import qualified Data.ByteString as B
 
 main :: Program -> IO ()
 main a = do
-  mtoken <- lookupEnv "GITHUB_TOKEN"
-  mtoken2 <- fmap fromString mtoken :: IO B.ByteString
+  mtoken <- lookupEnv "GITHUB_TOKEN" :: IO (Maybe String)
+  mtoken2 <- return $  fromString <$> mtoken :: IO (Maybe B.ByteString)
 --  ePrs <- GH.executeRequest' $ GH.pullRequestsFor' (fmap (OAuth . fromString) mtoken) (GH.mkOwnerName (T.pack(org a))) (GH.mkRepoName $ T.pack (repo a)) GH.optionsNoBase R.FetchAll
 --  putStrLn $ show ePrs
   return ()
