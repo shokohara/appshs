@@ -17,8 +17,11 @@ dependencies:
   - optparse-generic
   - text
   - bytestring
+  - slack-api
 
 executables:
   automerge:
     source-dirs:      src
-    main:             Main.hs
+    main:             AutoMergeMain.hs
+  mt:
+
