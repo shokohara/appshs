@@ -1,11 +1,11 @@
 {-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
-module Main where
+module AutoMergeMain where
 
-import CliOpt
-import Options.Generic
 import qualified AutoMerge as AM
+import CliOpt
 import qualified ExampleSlack as ES
+import Options.Generic
 import qualified Wc as W
 
 main :: IO ()

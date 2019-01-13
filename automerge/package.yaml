@@ -18,10 +18,15 @@ dependencies:
   - text
   - bytestring
   - slack-api
+  - typed-process
+  - string-conversions
+  - path
+  - bytestring
+  - optparse-applicative
+  - interpolate
+  - extra
 
 executables:
-  automerge:
-    source-dirs:      src
-    main:             AutoMergeMain.hs
-  mt:
-
+  swc:
+    source-dirs: src
+    main: SlackWorkCountMain.hs

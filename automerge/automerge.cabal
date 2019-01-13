@@ -1,0 +1,46 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: b6f62550b5301cc9ce4023732833a72b1b5bb7e83461766cacef8110a1b286f2
+
+name:           automerge
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/githubuser/automerge#readme
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2019 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable swc
+  main-is: SlackWorkCountMain.hs
+  other-modules:
+      AutoMerge
+      AutoMergeMain
+      CliOpt
+      ExampleSlack
+      Wc
+      Paths_automerge
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , extra
+    , github
+    , interpolate
+    , optparse-applicative
+    , optparse-generic
+    , path
+    , slack-api
+    , string-conversions
+    , text
+    , typed-process
+  default-language: Haskell2010
