@@ -13,12 +13,15 @@ extra-source-files:
 
 dependencies:
   - base >= 4.7 && < 5
-  - slack-hs
+  - slack-web
   - bytestring
   - aeson
   - aeson-casing
   - string-conversions
   - time
+  - time-locale-compat
+  - text
+  - mtl
 
 executables:
   slackworkcount:

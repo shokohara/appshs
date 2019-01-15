@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 027b1ae0c510714ac2fd050cc5112c4528b9efbdd437457a5b073aca07a07cda
+-- hash: 2168708019f25e18b0d6ce9bb5843a0fab1658da24c77fa9425f461821ef6541
 
 name:           slackworkcount
 version:        0.1.0.0
@@ -30,7 +30,10 @@ executable slackworkcount
     , aeson-casing
     , base >=4.7 && <5
     , bytestring
-    , slack-hs
+    , mtl
+    , slack-web
     , string-conversions
+    , text
     , time
+    , time-locale-compat
   default-language: Haskell2010
