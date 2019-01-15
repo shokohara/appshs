@@ -1,0 +1,30 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 8a01c5becfc53995d85e2bb573e7b55429109c1f59c9bae445f17402c88045e1
+
+name:           synczshhistry
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/githubuser/synczshhistry#readme
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2019 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable synczshhistry
+  main-is: Main.hs
+  other-modules:
+      Paths_synczshhistry
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
