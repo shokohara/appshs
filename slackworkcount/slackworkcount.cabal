@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7253b43334c9b19a249edb64b6399368e35bd3c854042b010f9a795027756321
+-- hash: 027b1ae0c510714ac2fd050cc5112c4528b9efbdd437457a5b073aca07a07cda
 
 name:           slackworkcount
 version:        0.1.0.0
@@ -32,4 +32,5 @@ executable slackworkcount
     , bytestring
     , slack-hs
     , string-conversions
+    , time
   default-language: Haskell2010

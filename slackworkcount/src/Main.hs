@@ -14,10 +14,11 @@ import Data.Aeson.Casing
 import Data.Either
 import Data.String.Conversions
 import Control.Monad
+import Data.Time.Clock
 
 data Message = Message {
   --messageClientMsgId :: String,
-  messageText :: String, messageUser :: String, messageTs :: String } deriving (Show, Generic)
+  messageText :: String, messageUser :: String, messageTs :: UTCTime } deriving (Show, Generic)
 data Response = Response { responseOk :: Bool, responseMessages :: [Message], responseHasMore :: Bool, responseIsLimited :: Bool } deriving Generic
 
 instance FromJSON Message where
@@ -25,6 +26,13 @@ instance FromJSON Message where
 
 instance FromJSON Response where
   parseJSON = genericParseJSON $ aesonPrefix snakeCase
+
+instance FromJSON UTCTime where
+  parseJSON = withText "UTCTime" $ \t ->
+        case parseTime defaultTimeLocale "%FT%T%QZ" (unpack t) of
+          Just d -> pure d
+          _      -> fail "could not parse ISO-8601 date"
+
 
 token :: IO Token
 token = fromString <$> getEnv "TOKEN"
@@ -41,7 +49,6 @@ channels token = do
       Slack.Success a -> a
     b :: L.ByteString -> Response
     b = either error id . eitherDecode
-
 
 main :: IO ()
 main = do

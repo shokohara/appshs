@@ -18,6 +18,7 @@ dependencies:
   - aeson
   - aeson-casing
   - string-conversions
+  - time
 
 executables:
   slackworkcount:
