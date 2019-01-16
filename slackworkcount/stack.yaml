@@ -4,3 +4,5 @@ packages:
 extra-deps:
 - github: shokohara/slack
   commit: 6591c2c
+- github: shokohara/slack-web
+  commit: 9336630adf674be630641f87ddb2bd81a66aad3e
