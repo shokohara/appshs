@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2168708019f25e18b0d6ce9bb5843a0fab1658da24c77fa9425f461821ef6541
+-- hash: 0ed2f62a0d6411889bc6cd71fe6d138af3782909a0a7b0b5fc0b3640883a3b3d
 
 name:           slackworkcount
 version:        0.1.0.0
@@ -28,6 +28,7 @@ executable slackworkcount
   build-depends:
       aeson
     , aeson-casing
+    , aeson-pretty
     , base >=4.7 && <5
     , bytestring
     , mtl

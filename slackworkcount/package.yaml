@@ -16,6 +16,7 @@ dependencies:
   - slack-web
   - bytestring
   - aeson
+  - aeson-pretty
   - aeson-casing
   - string-conversions
   - time
