@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fac097cde80c818278e6f9e3c8574c91bcfbada2ffd7123907b2308fcf2a0536
+-- hash: 82e39b86d7a35d2ba443cf07b94fd6612310e3458ff73a01ec7611c58d06fc8e
 
 name:           synczshhistry
 version:        0.1.0.0
@@ -27,5 +27,7 @@ executable synczshhistry
       src
   build-depends:
       base >=4.7 && <5
+    , bytestring
+    , text
     , time
   default-language: Haskell2010
