@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0ed2f62a0d6411889bc6cd71fe6d138af3782909a0a7b0b5fc0b3640883a3b3d
+-- hash: 6208d4d6d760e43dad1b98a4dee44ed3df65318a645a81ab90c419fee2621eaf
 
 name:           slackworkcount
 version:        0.1.0.0
@@ -19,14 +19,17 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable slackworkcount
-  main-is: Main.hs
+library
+  exposed-modules:
+      Lib
   other-modules:
       Paths_slackworkcount
   hs-source-dirs:
       src
+  default-extensions: OverloadedStrings
   build-depends:
-      aeson
+      Hclip
+    , aeson
     , aeson-casing
     , aeson-pretty
     , base >=4.7 && <5
@@ -34,6 +37,60 @@ executable slackworkcount
     , mtl
     , slack-web
     , string-conversions
+    , template-haskell
+    , text
+    , time
+    , time-locale-compat
+  default-language: Haskell2010
+
+executable slackworkcount
+  main-is: Main.hs
+  other-modules:
+      Paths_slackworkcount
+  hs-source-dirs:
+      app
+  default-extensions: OverloadedStrings
+  build-depends:
+      Hclip
+    , aeson
+    , aeson-casing
+    , aeson-pretty
+    , base >=4.7 && <5
+    , bytestring
+    , mtl
+    , slack-web
+    , slackworkcount
+    , string-conversions
+    , template-haskell
+    , text
+    , time
+    , time-locale-compat
+  default-language: Haskell2010
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      MainSpec
+      TestLib
+      Paths_slackworkcount
+  hs-source-dirs:
+      test
+  default-extensions: OverloadedStrings
+  build-depends:
+      Hclip
+    , QuickCheck
+    , aeson
+    , aeson-casing
+    , aeson-pretty
+    , base >=4.7 && <5
+    , bytestring
+    , hspec
+    , mtl
+    , slack-web
+    , slackworkcount
+    , string-conversions
+    , template-haskell
     , text
     , time
     , time-locale-compat

@@ -11,6 +11,8 @@ category:            Web
 extra-source-files:
 - README.md
 
+default-extensions:
+  - OverloadedStrings
 dependencies:
   - base >= 4.7 && < 5
   - slack-web
@@ -23,8 +25,26 @@ dependencies:
   - time-locale-compat
   - text
   - mtl
+  - Hclip
+  - template-haskell
 
 executables:
   slackworkcount:
-    source-dirs:      src
-    main:             Main.hs
+    source-dirs: app
+    main: Main.hs
+    dependencies:
+      - slackworkcount
+
+library:
+  source-dirs: src
+
+tests:
+  spec:
+    source-dirs:
+      - test
+    main: Spec.hs
+    dependencies:
+      - slackworkcount
+      - hspec
+      - QuickCheck
+

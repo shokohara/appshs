@@ -6,3 +6,5 @@ extra-deps:
   commit: 6591c2c
 - github: shokohara/slack-web
   commit: 9336630adf674be630641f87ddb2bd81a66aad3e
+- hasktags-0.71.2@sha256:5af8e0b77d639e90b8160c36c550dc394cc67477ca3ddb8aae0de32e230b75bc
+- Hclip-3.0.0.4@sha256:df341c936594465df25c3b9f93f6ebe3110a36d64a51dbbd1dbd557394bbdba4
