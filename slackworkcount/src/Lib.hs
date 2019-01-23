@@ -34,22 +34,32 @@ import qualified Web.Slack.Api as Api
 import qualified Web.Slack.Common as Api
 import Web.Slack.Common
 import Web.Slack.User
+import Data.Aeson.DeriveNoPrefix
 
-$(deriveToJSON defaultOptions ''SlackTimestamp)
-$(deriveToJSON defaultOptions ''SlackMessageText)
-$(deriveToJSON defaultOptions ''UserId)
-$(deriveToJSON defaultOptions ''MessageType)
-instance ToJSON Message
+$(deriveToJsonNoTypeNamePrefix ''SlackTimestamp)
+$(deriveToJsonNoTypeNamePrefix ''SlackMessageText)
+$(deriveToJsonNoTypeNamePrefix ''UserId)
+$(deriveToJsonNoTypeNamePrefix ''MessageType)
+$(deriveToJsonNoTypeNamePrefix ''Message)
 
-libMain slackConfig messageUser userId = do
-  b <- flip runReaderT slackConfig (Slack.channelsHistory $ Api.mkHistoryReq "C04L83KET")
-  c <- return $ historyRspMessages (either (error . show) id b)
-  LC.writeFile "messages.json" $ encode $ c
-  myMessages <- return $ filter (\a -> Just userId == messageUser a) $ historyRspMessages (either (error . show) id b)
+libMain :: (Slack.HasManager env, Slack.HasToken env) => env -> Text -> IO ()
+libMain slackConfig userNameEnv = do
+  users <- flip runReaderT slackConfig Slack.usersList
+  userId <- return $ userId . head $ filter (\a -> (userName a) == userNameEnv) (listRspMembers (either (error . show) id users))
+  _ <- print userId
+  c <- messages slackConfig "C04L83KET"
+--  _ <- print c
+--  LC.writeFile "messages.json" $ encode $ c
+  myMessages <- return $ filter (\a -> Just userId == messageUser a) c
+--  _ <- print myMessages
 --  return ()
 --  LC.putStrLn $ encodePretty $ myMessages
---  writeFile "out" . show . head $ f myMessages
+  writeFile "out" . show . head $ f myMessages
   setClipboard . show . head . f $ myMessages
+
+messages slackConfig channel = do
+  b <- flip runReaderT slackConfig (Slack.channelsHistory $ Api.mkHistoryReq channel)
+  return $ historyRspMessages (either (error . show) id b)
 
 data Output = Output { workTime :: Maybe WorkTime, note :: String } deriving Eq
 data WorkTime = WorkTime {start :: UTCTime, rest :: NominalDiffTime, end :: UTCTime, total :: NominalDiffTime } deriving Eq

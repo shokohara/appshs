@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6208d4d6d760e43dad1b98a4dee44ed3df65318a645a81ab90c419fee2621eaf
+-- hash: 15fe190611c32f1fde959e222b9061900862b4cc9e3c5c2d46367e4febe9423b
 
 name:           slackworkcount
 version:        0.1.0.0
@@ -30,10 +30,12 @@ library
   build-depends:
       Hclip
     , aeson
+    , aeson-better-errors
     , aeson-casing
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , deriveJsonNoPrefix
     , mtl
     , slack-web
     , string-conversions
@@ -53,10 +55,12 @@ executable slackworkcount
   build-depends:
       Hclip
     , aeson
+    , aeson-better-errors
     , aeson-casing
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , deriveJsonNoPrefix
     , mtl
     , slack-web
     , slackworkcount
@@ -81,10 +85,12 @@ test-suite spec
       Hclip
     , QuickCheck
     , aeson
+    , aeson-better-errors
     , aeson-casing
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , deriveJsonNoPrefix
     , hspec
     , mtl
     , slack-web

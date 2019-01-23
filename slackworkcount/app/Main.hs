@@ -29,24 +29,14 @@ import Data.Time.LocalTime
 import GHC.Generics
 import System.Environment (getEnv)
 import System.Hclip
-import qualified Web.Slack as Slack
-import qualified Web.Slack.Api as Api
-import qualified Web.Slack.Common as Api
-import Web.Slack.Common
+import Web.Slack (mkSlackConfig)
+import Web.Slack.Common (UserId)
 import Web.Slack.User
-
-$(deriveToJSON defaultOptions ''SlackTimestamp)
-$(deriveToJSON defaultOptions ''SlackMessageText)
-$(deriveToJSON defaultOptions ''UserId)
-$(deriveToJSON defaultOptions ''MessageType)
-instance ToJSON Message
+import Lib
 
 main :: IO ()
 main = do
   token <- getEnv "SLACK_TOKEN"
-  userNameEnv <- fromString <$> getEnv "SLACK_USERNAME" :: IO Text
-  slackConfig <- Slack.mkSlackConfig (fromString token)
-  a <- flip runReaderT slackConfig (Slack.apiTest Api.mkTestReq)
-  users <- flip runReaderT slackConfig Slack.usersList
-  userId <- return $ userId . head $ filter (\a -> (userName a) == userNameEnv) (listRspMembers (either (error . show) id users))
-  return ()
+  userNameEnv <- fromString <$> getEnv "SLACK_USERNAME"
+  slackConfig <- mkSlackConfig (fromString token)
+  libMain slackConfig userNameEnv

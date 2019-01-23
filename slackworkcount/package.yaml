@@ -27,6 +27,8 @@ dependencies:
   - mtl
   - Hclip
   - template-haskell
+  - aeson-better-errors
+  - deriveJsonNoPrefix
 
 executables:
   slackworkcount:
